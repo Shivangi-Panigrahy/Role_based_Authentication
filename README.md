@@ -43,18 +43,26 @@ Ensure you have the following installed:
    ```sh
    npm install
    ```
-3. Create a `.env` file and add the following environment variables in backend:
-   ```sh
-   DB_HOST=localhost
-   DB_USER=postgres
-   DB_PASS=123456789
-   DB_NAME=postgres
-   DB_PORT=5432
-   JWT_SECRET=your-jwt-secret-key
-   EMAIL_SERVICE=gmail
-   EMAIL_USER=shivangipanigrahy20@gmail.com
-   EMAIL_PASS=Hklwo lnii brpf tmfm
-   FRONTEND_URL=http://localhost:5173
+3. Create a .env file and add the following environment variables:
+
+DB_HOST=localhost
+DB_USER=postgres
+DB_PASS=your-db-password
+DB_NAME=postgres
+DB_PORT=5432
+JWT_SECRET=your-jwt-secret-key
+EMAIL_SERVICE=gmail
+EMAIL_USER=your-email@gmail.com
+EMAIL_PASS=your-app-password
+FRONTEND_URL=http://localhost:5173
+
+Note:
+
+Replace your-db-password with your actual PostgreSQL password.
+
+Replace your-email@gmail.com with your Gmail account.
+
+Replace your-app-password with an App Password generated from Google for secure email authentication
    ```
 4. Start the backend server:
    ```sh
