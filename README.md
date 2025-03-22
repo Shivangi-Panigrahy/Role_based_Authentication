@@ -43,7 +43,7 @@ Ensure you have the following installed:
    ```sh
    npm install
    ```
-3. Create a `.env` file and add the following environment variables:
+3. Create a `.env` file and add the following environment variables in backend:
    ```sh
    DB_HOST=localhost
    DB_USER=postgres
