@@ -13,7 +13,6 @@ const CustomerRegister = () => {
   const [success, setSuccess] = useState(false);
 
   useEffect(() => {
-    // Clear messages when component mounts
     dispatch(clearMessage());
     dispatch(clearError());
   }, [dispatch]);

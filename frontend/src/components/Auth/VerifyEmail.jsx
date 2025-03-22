@@ -42,8 +42,8 @@ const VerifyEmail = () => {
           <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
             <span className="block sm:inline">{error}</span>
             <p className="mt-4">
-              <Link to="/customer-register" className="font-medium text-indigo-600 hover:text-indigo-500">
-                Return to registration
+              <Link to="/admin-login" className="font-medium text-indigo-600 hover:text-indigo-500">
+                Return to Login
               </Link>
             </p>
           </div>

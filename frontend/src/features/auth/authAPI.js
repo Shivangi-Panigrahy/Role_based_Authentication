@@ -17,7 +17,6 @@ import client, {
     verifyEmailFailure
   } from './authSlice';
   
-  // Register a customer
   export const registerCustomer = (userData) => async (dispatch) => {
     dispatch(registerStart());
     try {
@@ -34,7 +33,6 @@ import client, {
     }
   };
   
-  // Register an admin
   export const registerAdmin = (userData) => async (dispatch) => {
     dispatch(registerStart());
     try {
@@ -50,8 +48,8 @@ import client, {
       throw new Error(errorMsg);
     }
   };
-  
-  // Login admin
+
+
   export const loginAdmin = (credentials) => async (dispatch) => {
     dispatch(loginStart());
     try {
@@ -68,7 +66,6 @@ import client, {
     }
   };
   
-  // Verify email
   export const verifyEmail = (token) => async (dispatch) => {
     dispatch(verifyEmailStart());
     try {
@@ -85,7 +82,6 @@ import client, {
     }
   };
   
-  // Get current user
   export const getCurrentUser = () => async (dispatch) => {
     dispatch(loginStart());
     try {

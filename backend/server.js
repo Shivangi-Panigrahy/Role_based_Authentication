@@ -9,12 +9,10 @@ const typeDefs = require('./schemas/user.schema');
 const resolvers = require('./resolvers/user.resolver');
 const { initDB } = require('./models');
 
-// Initialize Express
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Authentication middleware
 const getUser = (req) => {
   const token = req.headers.authorization || '';
   if (!token) return null;
@@ -27,13 +25,11 @@ const getUser = (req) => {
   }
 };
 
-// Create schema
 const schema = makeExecutableSchema({
   typeDefs,
   resolvers
 });
 
-// Initialize Apollo Server
 const startServer = async () => {
   const server = new ApolloServer({
     schema,
@@ -46,7 +42,6 @@ const startServer = async () => {
   await server.start();
   server.applyMiddleware({ app });
 
-  // Initialize database
   await initDB();
 
   const PORT = process.env.PORT || 4000;

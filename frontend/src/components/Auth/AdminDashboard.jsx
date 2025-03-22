@@ -9,11 +9,9 @@ const AdminDashboard = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // Redirect to login if not authenticated
     if (!isAuthenticated) {
       navigate('/admin-login');
     }
-    // Redirect if not admin
     else if (user && user.role !== 'admin') {
       navigate('/');
     }

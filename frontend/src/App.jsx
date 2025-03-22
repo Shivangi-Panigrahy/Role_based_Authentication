@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { useDispatch, useSelector } from 'react-redux';
 import { getCurrentUser } from './features/auth/authAPI';
 
-// Import components
 import CustomerRegister from './components/Auth/CustomerRegister';
 import AdminRegister from './components/Auth/AdminRegister';
 import AdminLogin from './components/Auth/AdminLogin';
@@ -15,7 +14,6 @@ function App() {
   const { isAuthenticated, user } = useSelector(state => state.auth);
 
   useEffect(() => {
-    // Check if user is authenticated on app load
     if (localStorage.getItem('token')) {
       dispatch(getCurrentUser());
     }
@@ -24,13 +22,11 @@ function App() {
   return (
     <Router>
       <Routes>
-        {/* Authentication Routes */}
         <Route path="/customer-register" element={<CustomerRegister />} />
         <Route path="/admin-register" element={<AdminRegister />} />
         <Route path="/admin-login" element={<AdminLogin />} />
         <Route path="/verify-email/:token" element={<VerifyEmail />} />
         
-        {/* Protected Routes */}
         <Route 
           path="/admin-dashboard" 
           element={
@@ -40,7 +36,6 @@ function App() {
           } 
         />
         
-        {/* Redirect to appropriate page based on user role */}
         <Route 
           path="/" 
           element={

@@ -16,16 +16,13 @@ const resolvers = {
   Mutation: {
     registerCustomer: async (_, { firstName, lastName, email, password }) => {
       try {
-        // Check if user exists
         const existingUser = await User.findOne({ where: { email } });
         if (existingUser) {
           throw new Error('Email already registered');
         }
 
-        // Generate verification token
         const verificationToken = crypto.randomBytes(20).toString('hex');
         
-        // Create user
         const user = await User.create({
           firstName,
           lastName,
@@ -35,7 +32,6 @@ const resolvers = {
           verificationToken
         });
 
-        // Send verification email
         await sendVerificationEmail(email, verificationToken);
 
         return {
@@ -48,16 +44,13 @@ const resolvers = {
     
     registerAdmin: async (_, { firstName, lastName, email, password }) => {
       try {
-        // Check if user exists
         const existingUser = await User.findOne({ where: { email } });
         if (existingUser) {
           throw new Error('Email already registered');
         }
 
-        // Generate verification token
         const verificationToken = crypto.randomBytes(20).toString('hex');
         
-        // Create user
         const user = await User.create({
           firstName,
           lastName,
@@ -67,7 +60,6 @@ const resolvers = {
           verificationToken
         });
 
-        // Send verification email
         await sendVerificationEmail(email, verificationToken);
 
         return {
@@ -80,29 +72,24 @@ const resolvers = {
 
     loginAdmin: async (_, { email, password }) => {
       try {
-        // Find user
         const user = await User.findOne({ where: { email } });
         if (!user) {
           throw new Error('Invalid email or password');
         }
 
-        // Check if user is verified
         if (!user.isVerified) {
           throw new Error('Please verify your email before logging in');
         }
 
-        // Check if user is admin
         if (user.role !== 'admin') {
           throw new Error('You are not allowed to login from here');
         }
 
-        // Validate password
         const isValid = await bcrypt.compare(password, user.password);
         if (!isValid) {
           throw new Error('Invalid email or password');
         }
 
-        // Generate token
         const token = jwt.sign(
           { id: user.id, email: user.email, role: user.role },
           process.env.JWT_SECRET,
@@ -130,7 +117,6 @@ const resolvers = {
         user.verificationToken = null;
         await user.save();
 
-        // Generate token
         const authToken = jwt.sign(
           { id: user.id, email: user.email, role: user.role },
           process.env.JWT_SECRET,

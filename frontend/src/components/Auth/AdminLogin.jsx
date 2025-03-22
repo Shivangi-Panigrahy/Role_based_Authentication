@@ -12,13 +12,12 @@ const AdminLogin = () => {
   const { loading, error, message, isAuthenticated } = useSelector(state => state.auth);
 
   useEffect(() => {
-    // Clear messages when component mounts
     dispatch(clearMessage());
     dispatch(clearError());
   }, [dispatch]);
 
   useEffect(() => {
-    // Redirect if user is authenticated
+
     if (isAuthenticated) {
       navigate('/admin-dashboard');
     }
@@ -36,7 +35,6 @@ const AdminLogin = () => {
     onSubmit: async (values) => {
       try {
         await dispatch(loginAdmin(values));
-        // Redirect will happen in the useEffect above
       } catch (err) {
         console.error('Login failed:', err);
       }

@@ -1,12 +1,10 @@
 import { ApolloClient, InMemoryCache, createHttpLink, gql } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
-// Set up HTTP connection to the GraphQL server
 const httpLink = createHttpLink({
   uri: 'http://localhost:4000/graphql',
 });
 
-// Add the authorization token to the headers
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem('token');
   return {
@@ -22,7 +20,6 @@ const client = new ApolloClient({
   cache: new InMemoryCache()
 });
 
-// GraphQL Mutations
 export const REGISTER_CUSTOMER = gql`
   mutation RegisterCustomer($firstName: String!, $lastName: String!, $email: String!, $password: String!) {
     registerCustomer(firstName: $firstName, lastName: $lastName, email: $email, password: $password) {
